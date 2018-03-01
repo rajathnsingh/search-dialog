@@ -60,6 +60,30 @@ public class SimpleSearchFilter<T extends Searchable> extends BaseFilter {
         return result;
     }
 
+   /*  if you want search result at the top as per search  keyword    uncomment this code..and comment or remove the performFiltering method above code       
+   @Override
+    protected Filter.FilterResults performFiltering(CharSequence chars) {
+        doBeforeFiltering();
+        String filterSeq = chars.toString().toLowerCase();
+        Filter.FilterResults result = new Filter.FilterResults();
+        if (filterSeq != null && filterSeq.length() > 0) {
+            ArrayList<T> filter = new ArrayList<>();
+            for (T object : mItems)
+                if (object.getTitle().toLowerCase().startsWith(filterSeq))
+                    filter.add(object);
+            result.values = filter;
+            result.count = filter.size();
+        } else {
+            synchronized (this) {
+                result.values = mItems;
+                result.count = mItems.size();
+            }
+        }
+        return result;
+    }
+    */
+    
+    
     @Override
     protected void publishResults(CharSequence constraint, FilterResults results) {
         ArrayList<T> filtered = (ArrayList<T>) results.values;
